@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            font-size: 16px;
+            color: red;
+        }
+        div{
+            width: 200px;
+            height: 100px;
+            overflow: hidden;
+            border: 1px solid red;
+        }
+        li{
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+        }
+    </style>
+    <script src="js/jquery-1.8.3.js"></script>
+    <script>
+$(function(){
+    var index=0;
+    $("#click1").click(function(){
+        if(index<5){
+          add();
+        }else{
+            $("#show").animate({"margin-top":-20*(index-4)},1000);
+            add();
+        }
+    })
+    function add(){
+        if($("#in").val()!=""){
+            var inputInfo=$("#in").val();
+            var li='<li>'+inputInfo+'</li>';
+            $("#show").append(li);
+            index++;
+        }else {
+            confirm("请输入要输入的内容")
+        }
+    }
+})
+    </script>
+</head>
+<body>
+<form action="" id="form">
+    <input type="text" id="in" onfocus="document.getElementById('in').value=''" value="">
+    <input type="button" value="点击提交" id="click1">
+</form>
+<div>
+    <ul id="show"></ul>
+</div>
+</body>
+</html>

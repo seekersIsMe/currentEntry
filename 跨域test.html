@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="jquery1.8.2.js"></script>
+
+</head>
+<body>
+<div class="tableWrap">
+    <table>
+        <thead>
+        <th class="locName">名称</th>
+        <th class="locPath">文件路径</th>
+        <th class="locSize">文件大小</th>
+        <th class="locState">状态</th>
+        <th class="locHandle">操作</th>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <div class="loading"><div class="loadingimg"> </div><p>等待加载，请选择上传文件...</p></div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        //生成guid的方法
+        function sobeyG() {
+            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
+        }
+        $.ajax({
+            type: "get",
+            url: "http://127.0.0.1:6789/?Request=FileList",
+            jsonp:"success_jsonpCallback",
+            jsonpCallback:"success_jsonpCallback",//callback的function名称
+            dataType:"jsonp",
+            beforeSend:function(){
+                //$("div.tableWrap tbody").html('请选择您要上传的视频...');
+            },
+            success: function (msg) {
+                var Result = msg[0].Result;
+                if(Result != ''){
+                    //var reCat = /<file name(.*?)\/>/i;
+                    if($(Result).find("file").attr("name") != undefined ){
+                        //当请求到传数据时，提交到控制器，生成列表
+                        //clearInterval(iCount);
+                        var filelisthtml = '';
+                        $(Result).find("file").each(function() {
+                            var file = $(this);
+                            //var path = file.find("path").text();//读取子节点的值
+                            var name = file.attr("name");//读取子节点的值
+                            var path = file.attr("path");//读取子节点的值
+                            var size = file.attr("size");//读取子节点的值
+                            //alert(size);
+                            var guid = (sobeyG() + sobeyG() + "-" + sobeyG() + "-" + sobeyG() + "-" + sobeyG() + "-" + sobeyG() + sobeyG() + sobeyG()).toUpperCase();
+                            //alert(guid);
+                            filelisthtml += '<tr>'
+                            filelisthtml += '<input name="ContentID[]" type="hidden" value="'+guid+'" />'
+                            filelisthtml += '<td class="locName">'
+                            filelisthtml += '<div title="'+name+'"><span>'+name+'</span><input type="text" name="name[]" value="'+name+'" class="ipt" /></div>'
+                            filelisthtml += '<a class="update" href="javascript:;" title="修改"></a></td>'
+                            filelisthtml += '<td class="locPath"><div title="'+path+'">'+path+'</div></td>'
+                            filelisthtml += '<input name="path[]" type="hidden" value="'+path+'" />'
+                            filelisthtml += '<td class="locSize">'+size+'</td>'
+                            filelisthtml += '<input name="size[]" type="hidden" value="'+size+'" />'
+                            filelisthtml += '<td class="locState"><span class="blue" id="'+guid+'">等待上传</span></td>'
+                            filelisthtml += '<td class="locHandle"><a href="javascript:;" onclick="deleteval()">删除<a></td>'
+                            filelisthtml += '</tr>';
+
+                        });
+                        $('.tableWrap .loading').remove();
+                        $("div.tableWrap tbody").html(filelisthtml);
+                        //newfun();
+                    }
+                }
+
+            },
+            error: function (msg) {
+                alert('获取文件列表失败，请重新选择您要上传的文件');
+            }
+
+        });
+    })
+</script>
+</body>
+</html>

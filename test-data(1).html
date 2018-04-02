@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="result"></div>
+<table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+        <th>总的用户</th>
+        <th>少于3分钟</th>
+        <th>3到4分钟</th>
+        <th>4到15分钟</th>
+        <th>15到60分钟</th>
+        <th>一小时以上</th>
+    </tr>
+    <tr id="xx">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+</body>
+<script src="js/jquery-1.8.3.js"></script>
+<script>
+    $(function(){
+        $.ajax({
+            type:"post",
+            url:"json/data.json",
+            dataType:"json",
+            success:function(data){
+                var a=0;
+                var b=0;
+                var c=0;
+                var d=0;
+                var e=0;
+                $("#xx").find("td").eq(0).text(data.length)
+                $.each(data,function(index,val){
+                    if(val.连接时长.indexOf("时")!=-1){
+                        e++;
+                    }
+                    if(val.连接时长.indexOf("时")==-1&&val.连接时长.indexOf("分")!=-1){
+                        var item=val.连接时长.split(/[分秒]/);
+                        var time=item[0]*60+item[1]*1;
+                        if(time<=180){
+                            a++
+                        }else if(180<time&&time<=240){
+                            b++;
+                        }else if(240<time&&time<=900){
+                            c++
+                        }else if(900<time&&time<=3600){
+                            d++
+                        }
+                    }
+                    if(val.连接时长.indexOf("分")==-1){
+                        a++;
+                    }
+                })
+                $("#xx").find("td").eq(1).text(a)
+                $("#xx").find("td").eq(2).text(b)
+                $("#xx").find("td").eq(3).text(c)
+                $("#xx").find("td").eq(4).text(d)
+                $("#xx").find("td").eq(5).text(e)
+            }
+        })
+    })
+</script>
+</html>

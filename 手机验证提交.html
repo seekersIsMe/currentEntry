@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnCode").click(function () {
+                //执行获取验证码的操作
+                GetNumber();
+            });
+        })
+        var count = 60;
+        function GetNumber() {
+            $("#btnCode").prop("disabled", "disabled");
+            $("#btnCode").val(count + "秒之后点击获取")
+            count--;
+            if (count >-1) {
+                setTimeout(GetNumber, 1000);
+            }
+            else {
+                clearInterval(GetNumber);
+                $("#btnCode").val("点击获取验证码");
+                $("#btnCode").prop("disabled", "");
+                count=60;
+            }
+        }
+    </script>
+</head>
+<body>
+<form>
+    <input id="btnCode" type="button" value="点击获取验证码"/>
+</form>
+</body>
+</html>

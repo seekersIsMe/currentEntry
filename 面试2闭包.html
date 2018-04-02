@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function ffo(){
+            var i=0;
+             function xx(){
+                console.log(i++);//i++先输出当前i的值，之后再加上一；
+            }
+            return xx;//返回的是一个函数，引用类型
+        }
+        var f1=ffo();//f1,f2指向的是函数xx
+        var f2=ffo();
+        f1();
+        f1();
+        f2();
+        f2();
+        //结果是0,1,0,1；
+    </script>
+</head>
+<body>
+
+</body>
+</html>

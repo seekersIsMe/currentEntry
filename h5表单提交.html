@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>form</title>
+    <style>
+        input:required{
+            background-color: #DCD4CE;
+        }
+        .invalid input:invalid{
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+<form id="form">
+    <label>email:<input type="email" required id="email"></label>
+    <label>IDCard:<input required id="IDCard"></label>
+    <input type="submit" id="submit">
+</form>
+<script>
+    var email = document.getElementById('email');
+    var IDCard = document.getElementById('IDCard');
+    var form = document.getElementById('form');
+
+    IDCard.addEventListener('input', function () {
+        if(this.value.length != 6) {
+            this.setCustomValidity('IDCard的长度必须为6')
+        }else{
+            this.setCustomValidity('')
+        }
+    });
+
+    form.addEventListener('invalid', function () {
+        this.className = 'invalid';
+    }, true)
+</script>
+</body>
+</html>

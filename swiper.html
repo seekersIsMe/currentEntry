@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>swiper</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" /><!--作用是删除苹果默认的工具栏和菜单栏-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" /><!--作用是手机顶部状态栏显示样式-->
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="MobileOptimized" content="320"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="css/swiper-3.4.0.min.css">
+    <script src="js/adaptive.js"></script>
+    <script>
+        window['adaptive'].desinWidth = 750;
+        window['adaptive'].baseFont = 24;
+        window['adaptive'].scaleType = 1;
+        window['adaptive'].init();
+    </script>
+</head>
+<style>
+    .swiper-container{width: 100%}
+    .swiper-container img{width: 7.5rem;height: 3.3rem;}
+    .swiper-pagination{z-index: 999999;}
+</style>
+<body>
+<!--焦点图-->
+<section class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="img/ban1.png" alt=""></div>
+        <div class="swiper-slide"><img src="img/ban2.png" alt=""></div>
+        <div class="swiper-slide"><img src="img/ban3.png" alt=""></div>
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+</section><!--焦点图 end-->
+<script src="js/jquery-1.8.3.js"></script>
+<script src="js/swiper.jquery.min.js"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        pagination : '.swiper-pagination',
+        initialSlide :0,//设置轮播slide的首次索引，从0开始；
+        direction : 'horizontal',//设置轮播的方向，vertical是垂直，horizontal是左右
+        longSwipesRatio : 0.1,//设置拖动的距离比，最大为0.5
+        threshold : 100,//拖动的距离大于设置的值时才会触发slide滑动
+        touchAngle : 10,//设置拖动的角度，只有拖动角度在设置值范围内即可触发slide滑动，默认值45度
+        resistance : true,//边缘抵抗。当swiper已经处于第一个或最后一个slide时，继续拖动Swiper会离开边界，释放后弹回。边缘抵抗就是拖离边界时的抵抗力。值为false时禁用，将slide拖离边缘时完全没有抗力。可以通过resistanceRatio设定抵抗力大小。
+        resistanceRatio : 0.9,//抵抗率
+        paginationClickable :true,//此参数设置为true时，点击分页器的指示点分页器会控制Swiper切换。
+        paginationHide :true,//默认为false，是否隐藏分页器按钮
+        paginationElement : 'li',//设定分页器指示器（小点）的HTML标签。
+        paginationBulletRender: function (swiper, index, className) {
+            return '<span class="' + className + '">' + (index + 1) + '</span>';
+        },//渲染分页器小点。这个参数允许完全自定义分页器的指示点。接受指示点索引和指示点类名作为参数。
+        loop : true,//设置为true 则开启loop模式。loop模式：会在原本slide前后复制若干个slide并在合适的时候切换，让Swiper看起来是循环的。
+        //loop模式在与free模式同用时会产生抖动，因为free模式下没有复制slide的时间点。
+        observer:true,//修改swiper自己或子元素时，自动初始化swiper
+        observeParents:true,//修改swiper的父元素时，自动初始化swiper
+    })
+</script>
+</body>
+</html>

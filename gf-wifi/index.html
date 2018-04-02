@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <title>视频列表</title>
+    <link rel="shortcut icon" type="image/x-icon" href="${path}/img/favicon.ico">
+    <link rel="apple-touch-icon" href="${path}/img/favicon.png">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="css/connectVideo.css">
+    <link rel="stylesheet" type="text/css" href="css/flickerplate.css">
+    <link rel="stylesheet" type="text/css" href="/css/video.css">
+</head>
+<style>
+    .scroll-to-top i.iconfont {
+        display: inline-block;
+        font-size: 24px;
+        transform: rotate(180deg);
+    }
+</style>
+<body>
+<div class="ad_start" style="max-height: 16rem;">
+    <ul class="ad_pics"></ul>
+</div>
+<div class="htmleaf-container">
+    <p class="titles" style="margin-bottom: 0;">热点视频</p>
+    <div id="got-gridbox"></div>
+</div>
+<div class="downloadApps">
+    <img src="img/downloadApp.png">
+</div>
+<a href="javascript:;" class="scroll-to-top hidden-print"><i class="iconfont icon-xiala"></i></a>
+</body>
+<script src="js/jquery-2.0.3.min.js" type="text/javascript"></script>
+<script src="js/modernizr-custom-v2.7.1.min.js" type="text/javascript"></script>
+<script src="js/hammer-v2.0.3.min.js" type="text/javascript"></script>
+<script src="js/flickerplate.min.js" type="text/javascript"></script>
+<script src="js/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="js/fastclick.js" type="text/javascript"></script>
+<script src="js/imglazyload.min.js" type="text/javascript"></script>
+<script>
+
+    //解决点击事件产生300ms延迟
+    window.addEventListener( "load", function() {
+        FastClick.attach( document.body );
+    }, false );
+
+    var cookieTime = "300";
+    /*添加cookie*/
+    function addCookie(name, cookievalue, time) {
+        if (name != "" && cookievalue != "" && time != "") {
+            if (isNaN(time) == false) {
+                var expires = new Date();
+                expires.setTime(expires.getTime() + time * 1000);
+                document.cookie = name + '=' + escape(cookievalue) + ';expires=' + expires.toGMTString();
+            }
+        }
+    }
+    function getCookie(cookieName) {
+        var cookieString = document.cookie;
+        var start = cookieString.indexOf(cookieName + '=');
+        if (start == -1)
+            return null;
+        start += cookieName.length + 1;
+        var end = cookieString.indexOf(';', start);
+        if (end == -1) return unescape(cookieString.substring(start));
+        return unescape(cookieString.substring(start, end));
+    }
+    var picArray = [], reaultShow = 1, uuids;
+    function sendShow(position) {
+        if (picArray[position]) {
+            if (reaultShow == 1 && !getCookie(picArray[position].adId)) {
+                $.ajax({
+                    url: "http://183.62.183.170:8081/ad-server/expad/" + picArray[position].adPlanId + "_" + picArray[position].adId + "_" + picArray[position].materialId + "_" + picArray[position].positionId + "/" + uuids.uuid + ".cmd",
+                    type: "get",
+                    cache: false
+                });
+                addCookie(picArray[position].adId, '1', cookieTime);
+                if (position + 1 == picArray.length) {
+                    reaultShow = 2;
+                    addCookie('firstFlag', '1', cookieTime);
+                }
+            }
+        }
+    }
+
+
+
+    $(function () {
+        var height = $(".downloadApps").height();
+        $("body").css("padding-bottom", height + 4);
+        $(".close").on("click", function () {
+            $(".footer_ad").css("display", "none");
+        });
+        //Scroll to Top
+        $(".scroll-to-top").on('click', function () {
+            $("html, body").animate({scrollTop: 0}, 600);
+            return false;
+        });
+
+        $(window).scroll(function () {
+            var position = $(window).scrollTop();
+            if (position >= 200) {
+                $('.scroll-to-top').addClass('active')
+            }
+            else {
+                $('.scroll-to-top').removeClass('active')
+            }
+        });
+        /*焦点图*/
+        $.ajax({
+            cache: false,
+            url: "http://183.62.183.170:8081/ad-server/getAd/1.cmd",
+            type: "get",
+            data: {
+                uuid: getCookie("cookieName")
+            },
+            dataType: "json",
+            success: function (data) {
+                var result = data.adList;
+                var pattern = /^(103)\d{2}/;
+                for (var i = 0; i < result.length; i++) {
+                    if (pattern.test(result[i].positionId)) {
+                        uuids = data;
+                        picArray.push(result[i]);
+                        var adPic = "<li data-background='" + result[i].pic + "' data-id=" + result[i].adPlanId + "_" + result[i].adId + "_" + result[i].materialId + "_" + result[i].positionId + " data-adId=" + result[i].adId + " data-adUrl=" + result[i].adUrl + "></li>";
+                        $(".ad_pics").append(adPic);
+                    }
+                }
+                $('.ad_start').flickerplate({
+                    arrows: false,
+                    auto_flick: true,
+                    auto_flick_delay: 5,
+                    flick_animation: 'transform-slide'
+                });
+                if (getCookie('cookieName')) {
+                    return false;
+                } else {
+                    addCookie('cookieName', data.uuid, cookieTime);
+                    addCookie('firstFlag', '0', cookieTime);
+                    if (picArray.length > 0) {
+                        $.ajax({
+                            cache: false,
+                            url: "http://183.62.183.170:8081/ad-server/expad/" + picArray[0].adPlanId + "_" + picArray[0].adId + "_" + picArray[0].materialId + "_" + picArray[0].positionId + "/" + uuids.uuid + ".cmd",
+                            type: "get"
+                        });
+                    }
+                }
+
+                var lis = $(".ad_start ul.ad_pics li");
+                lis.on("click", function () {
+                    var adUrls = $(this).attr("data-adUrl"),
+                            adIds = $(this).attr("data-adId");
+                    if (!getCookie(adIds)) {
+                        $.ajax({
+                            cache: false,
+                            url: "http://183.62.183.170:8081/ad-server/cliad/" + $(this).attr("id") + "/" + data.uuid + ".cmd",
+                            type: "get"
+                        });
+                        addCookie(adIds, "1", cookieTime);
+                    }
+                    if (adUrls != null && adUrls.indexOf('http') != 0) {
+                        window.open("http://" + adUrls + "?t=" + (new Date().getTime()));
+                    } else {
+                        window.open(adUrls + "?t=" + (new Date().getTime()));
+                    }
+                });
+            }
+        });
+        $.ajax({
+            url: 'http://183.62.183.170:8081/cnp-andromeda-app-server/video/getLetvListWithOrder.cmd?pageSize=50',
+            type: "get",
+            async: false,
+            dataType: "json",
+            success: function (data) {
+                if (data.flag == 1000) {
+                    var playerListBox = $("#got-gridbox");
+                    $.each(data.videoList, function (i, item) {
+                        var content = "<figure onclick=\"playerVideo(" + item.videoId + ");\">"
+                                + "<img data-src='" + item.videoPicture + "'>"
+                                + "<figcaption>" + item.videoName + "</figcaption>"
+                                + "</figure>";
+                        playerListBox.append(content);
+                    });
+                }
+            }
+        });
+
+        var Terminal = {
+            platform: function () {
+                var u = navigator.userAgent, app = navigator.appVersion;
+                return {
+                    // android或者UC浏览器
+                    android: u.indexOf("Android") > -1 || u.indexOf("Linux") > -1,
+                    // iPhone
+                    iPhone: u.indexOf("iPhone") > -1,
+                    iPad: u.indexOf("iPad") > -1,
+                    weChat: u.indexOf("MicroMessenger") > -1,
+                    qqChat: u.match(/\sQQ/i) == " QQ"
+                };
+            }(),
+            language: (navigator.browserLanguage || navigator.language).toLowerCase()
+        };
+        $(".downloadApps").click(function () {
+            if (Terminal.platform.iPhone || Terminal.platform.iPad) {
+                location.href = "itms-services://?action=download-manifest&url=https://www.cnpiwifi.com/iosmanifest.plist";
+                return false;
+            }
+            else {
+                location.href = "http://www.cnpiwifi.com/appinstall/andromeda.apk";
+                return false;
+            }
+        });
+        //图片延迟加载
+        $('#got-gridbox img').lazyload({
+            effect: "fadeIn"
+        });
+    });
+
+    function playerVideo(videoId) {
+        location.href = "videoPlayer.jsp?videoId=" + videoId;
+    }
+</script>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<input type="file" id="file">
+<input type="button" value="点击生成" id="test">
+<div id="result"></div>
+<table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+        <th>总的用户</th>
+        <th>少于3分钟</th>
+        <th>3到4分钟</th>
+        <th>4到15分钟</th>
+        <th>15到60分钟</th>
+        <th>一小时以上</th>
+    </tr>
+    <tr id="xx">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+</body>
+<script src="js/jquery-1.8.3.js"></script>
+<script>
+    $(function(){
+        var time=[];
+        $.ajax({
+            type:"post",
+            url:"json/data.json",
+            dataType:"json",
+            success:function(data){
+                var a=[0,0,0,0,0];
+                $("#xx").find("td").eq(0).text(data.length)
+                $.each(data,function(index,val){
+                    if(val.连接时长.indexOf("时")!=-1){
+                        var item1=val.连接时长.split(/[时分秒]/);
+                        time.push(item1[0]*3600+item1[1]*60+item1[2]*1);
+                    }
+                    if(val.连接时长.indexOf("时")==-1&&val.连接时长.indexOf("分")!=-1){
+                        var item=val.连接时长.split(/[分秒]/);
+                        time.push(item[0]*60+item[1]*1);
+
+                    }
+                    if(val.连接时长.indexOf("分")==-1){
+                        var item2=val.连接时长.split();
+                        time.push(1);
+                    }
+                })
+                alert(time)
+               for(var i=0;i<time.length;i++){
+                   if(time[i]<=180){
+                       a[0]++
+                   };
+               }
+                for(var i=0;i<time.length;i++){
+                    if(180<time[i]&&time[i]<=240){
+                        a[1]++
+                    }
+                }
+                for(var i=0;i<time.length;i++){
+                    if(240<time[i]&&time[i]<=900){
+                        a[2]++
+                    }
+                }
+                for(var i=0;i<time.length;i++){
+                    if(900<time[i]&&time[i]<=3600){
+                        a[3]++
+                    }
+                }
+                for(var i=0;i<time.length;i++){
+                    if(3600<time[i]){
+                        a[4]++
+                    }
+                }
+                $("#xx").find("td").eq(1).text(a[0])
+                $("#xx").find("td").eq(2).text(a[1])
+                $("#xx").find("td").eq(3).text(a[2])
+                $("#xx").find("td").eq(4).text(a[3])
+                $("#xx").find("td").eq(5).text(a[4])
+            }
+        })
+    })
+</script>
+</html>

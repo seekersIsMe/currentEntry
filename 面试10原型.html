@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var obj=function(){};
+        ins=new obj();
+        obj.prototype.actor="kin";
+        console.log(obj.actor,ins.actor)/*输出结果为undefined kin*/
+        console.log(obj.prototype.actor,ins.actor)/*输出结果为kin kin，   对于obj的原型属性，必须通过prototype调用，如果new一个obj，则可以直接调用*/
+        ins.actor="kin";
+        console.log(obj.actor,ins.actor);/*输出结果为undefined kin*/
+    </script>
+</head>
+<body>
+
+</body>
+</html>

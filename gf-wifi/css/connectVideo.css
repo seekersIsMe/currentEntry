@@ -1,0 +1,230 @@
+@font-face {font-family: 'iconfont';
+    src: url('../fonts/iconfont.eot'); /* IE9*/
+    src: url('../fonts/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('../fonts/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../fonts/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    /*-moz-osx-font-smoothing: grayscale;*/}
+
+.icon-shijian:before { content: "\e600"; }
+.icon-didian:before { content: "\e601"; }
+.icon-shouji:before { content: "\e602"; }
+.icon-miaoshu:before { content: "\e603"; }
+.icon-check:before { content: "\e606"; }
+.icon-leixing:before { content: "\e604"; }
+.icon-xiala:before { content: "\e605"; }
+
+body, html {
+    font-size: 100%;
+    padding: 0;
+    margin: 0
+}
+
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.clearfix:before, .clearfix:after {
+    content: " ";
+    display: table
+}
+
+.clearfix:after {
+    clear: both
+}
+
+body {
+    font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif
+}
+
+a {
+    color: #2fa0ec;
+    text-decoration: none;
+    outline: 0
+}
+
+a:hover, a:focus {
+    color: #74777b
+}
+
+@media screen and (max-width: 450px) {
+    #got-gridbox figure figcaption {
+        font-size: 1.2rem
+    }
+}
+
+.htmleaf-container {
+    margin: 0 auto
+}
+
+body {
+    position: relative;
+    font-size: 14px;
+    font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif
+}
+
+.downloadApps {
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    bottom: -4px
+}
+
+.downloadApps img {
+    width: 100%
+}
+
+.flickerplate .dot-navigation {
+    bottom: 0
+}
+
+.titles {
+    width: 100%;
+    height: 1.25rem;
+    border-left: .25rem solid red;
+    line-height: 1.25rem;
+    padding-left: .25rem;
+    font-weight: 800
+}
+
+.model ul {
+    padding: 1rem
+}
+
+.model ul li {
+    margin-top: .25rem;
+    width: 50%;
+    float: left
+}
+
+.model ul li:nth-child(odd) img {
+    text-align: center
+}
+
+.model ul li img {
+    width: 95%
+}
+
+.model ul li span {
+    display: inline-block;
+    font-size: 1.45rem;
+    line-height: 2.65rem;
+    color: #222
+}
+
+.model ul li small {
+    display: block;
+    color: #8e8e8f;
+    margin-bottom: .45rem
+}
+
+* {
+    box-sizing: border-box
+}
+
+#got-gridbox {
+    padding: 1rem;
+    padding-top: .5rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between
+}
+
+#got-gridbox figure {
+    position: relative;
+    font-size: 0;
+    margin: 0;
+    margin: 2% 0;
+    flex: 0 0 48%
+}
+
+#got-gridbox figure img {
+    display: block;
+    box-shadow: 0 0 2px #ADADAE;
+    width: 100%;
+    height: auto
+}
+
+#got-gridbox figure figcaption {
+    font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    display: -webkit-box !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2
+}
+
+#got-gridbox figure:nth-child(even) figcaption {
+    left: 4%;
+    right: auto;
+    text-align: left
+}
+
+@media screen and (max-width: 900px) {
+    #got-gridbox figure figcaption {
+        font-size: 1.4rem
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #got-gridbox figure figcaption {
+        font-size: 1rem
+    }
+}
+
+@media screen and (max-width: 320px) {
+    #got-gridbox figure figcaption {
+        font-size: 1rem
+    }
+}
+
+.scroll-to-top {
+    position: fixed;
+    display: block;
+    right: -100px;
+    bottom: 4.5rem;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    background-color: #1c2b36;
+    color: #fff;
+    text-align: center;
+    z-index: 10;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.05);
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease
+}
+
+.scroll-to-top:hover, .scroll-to-top:focus {
+    background-color: #2baab1;
+    color: #fff;
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease
+}
+
+.scroll-to-top.active {
+    right: 1rem
+}

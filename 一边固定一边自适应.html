@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #wrap {
+            overflow: hidden; *zoom: 1;
+        }
+        #content ,#sidebar {
+            background-color: #eee;
+        }
+        #sidebar {
+            float: right; width: 300px;
+        }
+        #content {
+            margin-right: 310px;
+        }
+        #footer {background-color: #f00;color:#fff; margin-top: 1em}
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <!--dom元素必须为div-->
+    <div id="sidebar" style="height:240px;">固定宽度区</div>
+    <div id="content" style="height:200px;">自适应区</div>
+</div>
+<div id="footer">后面的一个DIV，以确保前面的定位不会导致后面的变形</div>
+<div>
+    <h1 style="color: red">注意点</h1>
+    大家要注意html中必须使用div标签，不要妄图使用什么p标签来达到目的。因为div有个默认属性，即如果不设置宽度，那他会自动填满他的父标签的宽度。这里的content就是例子。
+
+    当然我们不能让他填满了，填满了他就不能和sidebar保持同一行了。我们给他设置一个margin。由于sidebar在右边，所以我们设置content的margin-right值，值比sidebar的宽度大一点点——以便区分他们的范围。例子中是310.
+
+    假设content的默认宽度是100%，那么他设置了margin后，他的宽度就变成了100%-310，此时content发现自己的宽度可以与sidebar挤在同一行了，于是他就上来了。
+
+    而宽度100%是相对于他的父标签来的，如果我们改变了他父标签的宽度，那content的宽度也就会变——比如我们把浏览器窗口缩小，那wrap的宽度就会变小，而content的宽度也就变小——但，他的实际宽度100%-310始终是不会变的。
+</div>
+<br>
+<br>
+<br>
+<div>
+    <h1 style="color: red">另外一种方法</h1>
+    以不折腾人为标准的w3c标准早就为我们提供了制作这种自适应宽度的标准方法。那就简单了：把wrap设为display:table并指定宽度100%,然后把content+sidebar设为display:table-cell;然后只给sidebar指定一个宽度，那么content的宽度就变成自适应了。
+</div>
+<br>
+<br>
+<br>
+<div>
+    <h1 style="color: red">另外一种方法</h1>
+    flex弹性盒模型
+
+</body>
+</html>

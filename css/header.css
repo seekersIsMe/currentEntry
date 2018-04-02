@@ -1,0 +1,21 @@
+header,section,footer{width: 100%;}
+.toge{width: 1000px;margin: 0px auto;}
+
+ h3{height: 60px;line-height: 60px;margin-left: 15px}
+ .lunbo_gudin{width: 1000px;height: 300px;box-sizing: border-box;overflow: hidden;position: relative;}
+ .lunbo_gudin ul{width: 2000px;height: 300px;box-sizing: border-box;position: absolute;}
+ li{width: 220px;height:300px;border: 1px solid #CCCCCC;border-radius: 5px;box-sizing: border-box;text-align: center;float: left;margin: 0px 15px;}
+ span{color: red;}
+ .lunbo_pic{height: 130px;background-size: cover;text-align: right;}
+ li:nth-of-type(1) .lunbo_pic{ background:url("../img/hot2.jpg") no-repeat;}
+ li:nth-of-type(2) .lunbo_pic{ background:url("../img/hot8.jpg") no-repeat;}
+ li:nth-of-type(3) .lunbo_pic{ background:url("../img/hot7.jpg") no-repeat;}
+ li:nth-of-type(4) .lunbo_pic{ background:url("../img/hot6.jpg") no-repeat;}
+ li:nth-of-type(5) .lunbo_pic{ background:url("../img/hot5.jpg") no-repeat;}
+ li:nth-of-type(6) .lunbo_pic{ background:url("../img/hot4.jpg") no-repeat;}
+ li:nth-of-type(7) .lunbo_pic{ background:url("../img/hot3.jpg") no-repeat;}
+ li:nth-of-type(8) .lunbo_pic{ background:url("../img/hot2.jpg") no-repeat;}
+ .lunbo_pic>span{display: inline-block;width: 40px;height:25px;line-height:25px;border-radius: 0px 5px 0px 5px;background-color: red;color: white;font-size: 12px;text-align: center;}
+ .lunbo_toge_buttom{margin-bottom: 10px;}
+ .toge_font_size{font-size: 14px}
+ .lunbo_num span{display: inline-block;width: 40px;height: 25px;border: 1px solid red;border-radius: 5px;line-height: 25px;}

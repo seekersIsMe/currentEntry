@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var a, b,result;
+        result=((a=1)||(b=2));/*或运算只执行了前一部分，也就是只对a进行了赋值，而b并没有赋值，所以结果输出1 undefined*/
+        console.log(a,b);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

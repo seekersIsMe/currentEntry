@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+.fiul li{
+    width: 100px;
+    height: 30px;
+}
+.fiul li:nth-child(1){
+    background-color: pink;
+}
+.fiul li:nth-child(2){
+    background-color: black;
+}
+.fiul li:nth-child(3){
+    background-color: blue;
+}
+.fiul li:nth-child(4){
+    background-color: yellow;
+}
+.fiul li:nth-child(5){
+    background-color: red;
+}
+    </style>
+    <script src="js/jquery-1.8.3.js"></script>
+    <script>
+        $(function(){
+            $(".fiul li").first().animate({"margin-left":"-100px"},2000);//先左移动，不会影响到其他的li的位置
+            $(".fiul li").eq(1).animate({"margin-top":"-100px"},2000);//会影响到后面的li的位置，但是不会影响他前面的li
+        })
+    </script>
+</head>
+<body>
+<ul class="fiul">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+</body>
+</html>

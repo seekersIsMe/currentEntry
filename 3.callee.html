@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        p {display: none;}
+    </style>
+    <script>
+        /*
+        * callee
+        * */
+
+
+        function fn() {
+            //arguments.callee => 当前函数
+            //alert(arguments.callee);
+        }
+
+        //fn();
+
+        //函数的自执行，申明并立即执行
+
+
+        /*(function fn1() {
+            alert(1);
+        })();*/
+
+        /*(function() {
+            alert(1);
+        })();*/
+
+        //fn1();
+
+
+        //setInterval
+        //setTimeout
+
+        var a = 1;
+
+        /*function interval() {
+            setTimeout(function() {
+                document.title = a++;
+                interval();
+            }, 100);
+        }
+
+        interval();*/
+
+        (function() {
+            var _arguments = arguments;
+            setTimeout(function() {
+                document.title = a++;
+                _arguments.callee();
+            }, 100);
+        })();
+
+        window.onload = function() {
+
+            var aInput = document.getElementsByTagName('input');
+            var aP = document.getElementsByTagName('p');
+
+            for (var i=0; i<aInput.length; i++) {
+                //show(i);
+
+                (function(i) {
+                    aInput[i].onclick = function() {
+                        for (var j=0; j<aInput.length; j++) {
+                            aInput[j].style.background = '';
+                            aP[j].style.display = 'none';
+                        }
+
+                        aInput[i].style.background = 'yellow';
+                        aP[i].style.display = 'block';
+                    }
+                })(i);
+
+            }
+
+            /*function show(index) {
+                aInput[index].onclick = function() {
+                    for (var i=0; i<aInput.length; i++) {
+                        aInput[i].style.background = '';
+                        aP[i].style.display = 'none';
+                    }
+
+                    aInput[index].style.background = 'yellow';
+                    aP[index].style.display = 'block';
+                }
+            }*/
+
+        }
+     </script>
+</head>
+<body>
+    <div id="div1">
+        <input type="button" value="按钮一" style="background-color: yellow"/>
+        <input type="button" value="按钮一"/>
+        <input type="button" value="按钮一"/>
+        <p style="display: block;">11111</p>
+        <p>222222</p>
+        <p>333333</p>
+    </div>
+</body>
+</html>

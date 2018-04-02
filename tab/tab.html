@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{float: left;margin-left: 20px;list-style: none}
+        .clear:after{height: 0;content: "12";clear: both;visibility: hidden;overflow: hidden;}
+        .top1{color: #333333;border-bottom: 0.03rem solid red;}
+        .top2{color: #666666;}
+        #div_tab_2,#div_tab_3,#div_tab_4,#div_tab_5,#div_tab_6{display: none}
+    </style>
+</head>
+<body>
+<ul class="clear">
+    <li class="top1" id="td_tab_1"  onclick="showtable('tab',6,1,'top1','top2')">推荐</li>
+    <li class="top2" id="td_tab_2"  onclick="showtable('tab',6,2,'top1','top2')">本地</li>
+    <li class="top2" id="td_tab_3"  onclick="showtable('tab',6,3,'top1','top2')">国内</li>
+    <li class="top2" id="td_tab_4"  onclick="showtable('tab',6,4,'top1','top2')">娱乐</li>
+    <li class="top2" id="td_tab_5"  onclick="showtable('tab',6,5,'top1','top2')">体育</li>
+    <li class="top2" id="td_tab_6"  onclick="showtable('tab',6,6,'top1','top2')">视频</li>
+</ul>
+<div id="div_tab_1">第一模块</div>
+<div id="div_tab_2">第二模块</div>
+<div id="div_tab_3">第三模块</div>
+<div id="div_tab_4">第四模块</div>
+<div id="div_tab_5">第五模块</div>
+<div id="div_tab_6">第六模块</div>
+<script>
+    function showtable(tbflag,tbnum,curtable,tdyes,tdno)
+    {
+        for(i=1; i<=tbnum;i++)
+        {
+            if(i==curtable)
+            {
+                document.getElementById("td_"+tbflag+"_"+i).className=tdyes;
+                document.getElementById("div_"+tbflag+"_"+i).style.display='block';
+            }
+            else
+            {
+                document.getElementById("td_"+tbflag+"_"+i).className=tdno;
+                document.getElementById("div_"+tbflag+"_"+i).style.display='none';
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*高度自适吟*/
+        .hit{
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+    <script>
+        function ss(){
+            var student = ['qiang','ming','tao','li','liang','you','qiang','tao','1','2','1'];
+            var tmp = new Array();
+            for(var i=0;i<student.length;i++){//这种简单的数组可以用for遍历，但是像【‘name’:'zhan','sex':'boy'】有时候不一定奏效
+                if(tmp.indexOf(student[i])==-1){//indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。
+                    tmp.push(student[i]);
+                }
+            }
+            alert(tmp);
+        }
+        // 判断浏览器是否支持indexOf ，indexOf 为ecmaScript5新方法 IE8以下（包括IE8， IE8只支持部分ecma5）不支持
+        if (!Array.prototype.indexOf){
+            // 新增indexOf方法
+            Array.prototype.indexOf = function(item){
+                var result = -1, a_item = null;
+                if (this.length == 0){
+                    return result;
+                }
+                for(var i = 0, len = this.length; i < len; i++){
+                    a_item = this[i];
+                    if (a_item === item){
+                        result = i;
+                        break;
+                    }
+                }
+                return result;
+            }
+        }
+//        比较完美的方法
+//        function ss(){
+//            var student = ['qiang','ming','tao','li','liang','you','qiang','tao','1','2','1'];
+//            var tmp = new Array();
+//            for(var i in student){//for..in可以遍历数组或者对象
+////该元素在tmp内部不存在才允许追加
+//                if(tmp.indexOf(student[i])==-1){
+//                    tmp.push(student[i]);
+//                }
+//            }
+//            alert(tmp);
+//        }
+    </script>
+</head>
+<body>
+<div class="hit">
+    <button onclick="ss()">点击</button>
+</div>
+
+</body>
+</html>

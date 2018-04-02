@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function cc(){
+            var arr='1234567893';
+            var json={};
+            for(var i=0;i<arr.length;i++){//charAt() 方法可返回指定位置的字符。
+                //请注意，JavaScript 并没有一种有别于字符串类型的字符数据类型，所以返回的字符是长度为 1 的字符串。
+                if(!json[arr.charAt(i)]){
+                    json[arr.charAt(i)]=1;
+                }else{
+                    json[arr.charAt(i)]++;
+                }
+            }
+            var number="";
+            var num=0;
+            for(var i in json){
+                if(json[i]>num){
+                    num=json[i];
+                    number=i;
+                }
+            }
+            alert("次数最多"+num+"出现最多次数元素"+number)
+        }
+
+    </script>
+</head>
+<body>
+<button onclick="cc()">点击</button>
+</body>
+</html>

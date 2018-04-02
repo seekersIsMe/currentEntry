@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var name="word";
+        (function(){
+            if(typeof name==="undefined"){/*该函数内的name是局部变量，所以结果输出wuwu jack*/
+                var name="jack";
+                console.log("wuwu"+name)
+            }else {
+                console.log("haha"+name);
+            }
+        })();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

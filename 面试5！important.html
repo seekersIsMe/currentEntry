@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div .text{color: red}
+        #redi .text{color: green!important;}/*!important优先级最高*/
+        #redi .text{color: yellow;vertical-align: m}
+    </style>
+</head>
+<body>
+<div class="box" id="redi">
+    <span class="text" style="color: #000">这行字的颜色是</span>
+</div>
+</body>
+</html>

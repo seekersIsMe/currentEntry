@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>移动web——test</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" /><!--作用是删除苹果默认的工具栏和菜单栏-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" /><!--作用是手机顶部状态栏显示样式-->
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="MobileOptimized" content="320"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="css/guangfo_index.css">
+</head>
+<body>
+<div class="bg_1">
+    <img src="img/bg_1.jpg" alt="佛山传媒" onerror="this.src='img/bg_2.jpg'">
+    <button class="click_3"><a href="h5.html">点击跳过<span>8</span></a></button>
+
+</div>
+<script src="js/zepto.min.js"></script>
+<script type="text/javascript" >
+    $(function(){
+        var i=8;
+        var tf=false;
+       var timesl=function(){
+                if(!tf){
+                    $(".click_3").find("span").text(i);
+                    i--;
+                    if(i==-1){
+                        tf=true;
+                        clearInterval(timesl());
+                        window.location.replace("h5.html");
+                    }
+                }
+           }
+        setInterval(timesl,1000);
+    })
+</script>
+</body>
+</html>

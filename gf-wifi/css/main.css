@@ -1,0 +1,869 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+html{
+    font-size: 312.5%;  /*0.2rem=10px  1rem=50px*/
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;  /*禁止长按选中*/
+    -webkit-user-select: none;
+}
+
+html,body,.indexPage,.connectPage,.welcomePage,section {
+    height: 100%
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #000;
+    font-size: .28rem;
+    line-height: 1;
+}
+
+input,button {
+    -webkit-appearance: none
+}
+
+input:hover{
+    outline:none;
+}
+
+:-moz-placeholder {
+    color: #D8D8D8!important
+}
+
+::-moz-placeholder {
+    color: #D8D8D8!important
+}
+
+input:-ms-input-placeholder {
+    color: #D8D8D8!important
+}
+
+input::-webkit-input-placeholder {
+    color: #D8D8D8!important
+}
+
+@font-face {font-family: 'iconfont';
+    src: url('../fonts/iconfont.eot'); /* IE9*/
+    src: url('../fonts/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('../fonts/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../fonts/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    /*-moz-osx-font-smoothing: grayscale;*/}
+
+.icon-shijian:before { content: "\e600"; }
+.icon-didian:before { content: "\e601"; }
+.icon-shouji:before { content: "\e602"; }
+.icon-miaoshu:before { content: "\e603"; }
+.icon-check:before { content: "\e606"; }
+.icon-leixing:before { content: "\e604"; }
+.icon-xiala:before { content: "\e605"; }
+
+.logoIcon img {
+    position: relative;
+    margin-top: 25%;
+    margin-bottom:8%;
+    width: 1.44rem;
+    left: 50%;
+    margin-left: -.72rem
+}
+
+#userForm input[info = info] {
+    text-align: left;
+    display: block;
+    margin: 0 auto;
+    padding-top: .02rem;
+    padding-left: .9rem;
+    width: 90%;
+    height: .9rem;
+    font-size: 0.28rem;
+    line-height: 0.4rem;
+    border: 0;
+    border-bottom: 0.02rem solid #eee;
+    border-radius: 0;
+    background-color: transparent;
+    color: #ccc
+}
+
+.phoneNumber {
+    background-image: url("../img/phone.svg");
+    background-repeat: no-repeat;
+    background-size: .62rem;
+    background-position: .11rem .16rem
+}
+
+.securityCode {
+    background-image: url("../img/eyes-on.svg");
+    background-repeat: no-repeat;
+    background-size: .84rem;
+    background-position: 0 .14rem
+}
+
+#userForm label[info = info] {
+    display: block;
+    width: 0;
+    margin-left: 5%;
+    margin-top: -.02rem;
+    border-bottom: .02rem solid deepskyblue
+}
+#userForm label.feedTitle{
+    width: 1.6rem;
+    text-align: right;
+    height: .9rem;
+    line-height: .9rem;
+    font-size: .28rem;
+    color: #fff;
+}
+
+
+.getSecurityCode {
+    position: absolute;
+    right: 4%;
+    margin-top: -.78rem;
+    width: 2rem;
+    text-align: left;
+    color: #D8A148;
+    line-height: .78rem;
+    background: transparent!important;
+    border: 0
+}
+
+.flexbox{
+    width: 90%;
+    margin: 0 auto;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.flex{
+    display:block;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -ms-box-flex: 1;
+    -o-box-flex: 1;
+    flex:1;
+}
+
+.errors {
+    display: none;
+    background-image: url("../img/error.svg");
+    background-repeat: no-repeat;
+    background-position: .22rem .19rem;
+    background-size: .4rem;
+    height: .8rem;
+    margin: 0 auto;
+    width: 90%;
+    text-align: left;
+    line-height: .8rem;
+    color: #b8b8b8;
+    padding-left: .8rem
+}
+
+form .terms {
+    width: 90%;
+    margin: 0 auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap
+}
+
+form .terms input {
+    display: none
+}
+
+form .terms label.check {
+    cursor: pointer;
+    position: relative;
+    width: .56rem;
+    height: .56rem;
+    margin: .16rem;
+    border: .04px solid #369;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    font-size: .32rem;
+    color: #FFF;
+    font-smoothing: antialiased
+}
+
+form .terms label.check {
+    border-radius: .08rem
+}
+
+form .terms label .iconfont{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    line-height: .52rem;
+    text-align: center
+}
+
+form .terms input:checked+label {
+    border: .04px solid #2b5782
+}
+
+form .terms input:checked+label .iconfont {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1)
+}
+
+form .terms span {
+    line-height: .83rem;
+    color: #b8b8b8;
+    font-size: .3rem
+}
+
+.termsText {
+    display: none;
+    width: 90%;
+    max-height: 1.76rem;
+    overflow-y: auto;
+    margin: 0 auto;
+    padding: .16rem;
+    font-size: .24rem;
+    color: #b8b8b8;
+    background: rgba(188,188,188,.3);
+    border: .02rem solid #e5e5e5
+}
+
+.termsText p {
+    text-indent: 2em;
+}
+
+button.connectBtn {
+    display: block;
+    width: 90%;
+    height: .9rem;
+    margin: .08rem auto;
+    font-size: 0.32rem;
+    color: #eee;
+    background: #e9ae4c;
+    border: .02rem solid #D8A148;
+    border-radius: .048rem
+}
+
+button.feedback{
+    float: right;
+    height: .64rem;
+    width: 1.6rem;
+    text-align: center;
+    background-color: #e9ae4c;
+    border:none;
+    border-radius: .048rem;
+    color: #eee;
+    margin-top: .1rem;
+}
+button.feedback:active , button.connectBtn:active{
+    background-color: #ea8010;
+    border-color: #ea8010;
+}
+
+.feedSection{
+    border-bottom: .02rem solid #FFFFFF;
+    width: 100%;
+}
+.feedTextarea{
+    width: 100%;
+    margin-top: 0.24rem;
+    border:.02rem solid #fff;
+    background: transparent;
+    font-size: .28rem;
+    padding: .16rem;
+    color: #fff;
+    resize: none;
+}
+
+.feedTextarea::-ms-input-placeholder{
+    color: #fff;
+}
+.feedTextarea::-webkit-input-placeholder{
+    color: #fff;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: .88rem;
+    color: white;
+    line-height: .88rem;
+    padding: 0 .16rem;
+    background-color: rgba(222,222,222,.2)
+}
+
+footer img {
+    width: .56rem;
+    display: inline-block;
+    vertical-align: middle
+}
+
+footer span {
+    width: 80%;
+    overflow: hidden;
+    margin-left: .048rem
+}
+
+footer .stressColor {
+    color: #FFFFF;
+    font-weight: 700;
+}
+
+footer .connectColor {
+    color: #FFFFF;
+    font-weight: 700;
+}
+
+#persons {
+    display: none
+}
+
+footer #scrollMessage {
+    width: 90%;
+    overflow: hidden;
+    margin-left: .68rem
+}
+
+.welcomePage {
+    display: block;
+    background-repeat: no-repeat;
+    background-size:cover
+}
+
+.indexPage {
+	display: none;
+}
+
+.connectPage {
+    display: none;
+    background-repeat: no-repeat;
+    background-size:cover
+}
+
+section.welcomeSection {
+    position: relative;
+    background-repeat:  no-repeat;
+    background-size: cover
+}
+
+section.welcomeSection .contentText img {
+    display: block;
+    width: 90%;
+    margin: 0 auto
+}
+
+section.connectSection {
+    position: relative;
+    /*background-image: url("../img/connectBg.jpg");*/
+    background-repeat:  no-repeat;
+    background-size: cover
+}
+
+section.connectSection .contentText img {
+    display: block;
+    width: 90%;
+    margin: 0 auto
+}
+
+footer.connectFooter {
+    background-color: rgba(0,148,218,1)
+}
+
+footer.connectFooter img {
+    transform: translate3d(0,0,0);
+    animation: play 1.5s linear infinite
+}
+
+.adFlag {
+	width:36px;
+	height:36px;
+	border-radius:18px;
+	float:left;
+	margin-top:5px;
+	margin-left:5px;
+	padding-top:11px;
+	padding-left:4px;
+	background-color:#008000;
+	opacity:0.7;
+}
+
+.adFlag span {
+	color:#ecffff;
+}
+
+@keyframes play {
+    0% {
+        transform: rotateZ(0deg)
+    }
+
+    100% {
+        transform: rotateZ(360deg)
+    }
+}
+
+section.connectSuccessSection {
+    position: relative;
+    /*background: url("../img/connectBg.jpg");*/
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+section.connectSuccessSection .contentText img {
+    display: block;
+    width: 90%;
+    margin: 0 auto
+}
+
+footer.connectSuccessFooter {
+    background-color: rgba(0,148,218,1)
+}
+
+section.connectFailSection {
+    position: relative;
+    background: url("../img/connectBg.jpg") no-repeat;
+    background-size: cover
+}
+
+section.connectFailSection .contentText img {
+    display: block;
+    width: 90%;
+    margin: 0 auto
+}
+
+footer.connectFailFooter {
+    background-color: rgba(222,222,222,.1)
+}
+
+/*    提示信息框   */
+#markDiv{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    background-color: rgba(0,0,0,.5);
+    z-index: 999;
+}
+#layerDiv{
+    width: 6rem;
+    height: 2rem;
+    position: fixed;
+    left: 50%;
+    top:50%;
+    margin-top: -1rem;
+    margin-left: -3rem;
+    background-color: #ffffff;
+    border-radius: .2rem;
+    z-index: 9999;
+    animation:alertAnimation 0.3s ease-in-out 0 1;
+    -webkit-animation:alertAnimation 0.3s ease-in-out 0 1;
+}
+#layerDiv .layerCenter{
+    margin: .3rem 0;
+    color: #545454;
+}
+#layerDiv .layerCenter .layerMsg{
+    font-size: .32rem;
+    text-align: center;
+    line-height: .6rem;
+}
+#layerDiv .layerBottom{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    bottom: 0;
+    border-top:.02rem solid #bbb9b9;
+    text-align: center;
+}
+#layerDiv .layerBottom .closeAlert{
+    display: inline-block;
+    width: 100%;
+    height: .8rem;
+    font-size: .28rem;
+    color: #1ba1e2;
+    background: transparent;
+    border:none;
+}
+#layerDiv .layerBottom:active{
+    background: #cccccc;
+    border-radius:0 0 .2rem .2rem;
+}
+
+#layerDiv .loadingMsg{
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    height: .8rem;
+    bottom:0;
+    left: 0;
+    font-size: .28rem;
+    color: #666;
+    background: transparent;
+    border:none;
+}
+
+#layerDiv .layerLoad{
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 100%;
+    max-width: 100%;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+}
+.ball-pulse > div:nth-child(0) {
+    -webkit-animation: scale 0.75s 0s infinite cubic-bezier(.2, .68, .18, 1.08);
+    animation: scale 0.75s 0s infinite cubic-bezier(.2, .68, .18, 1.08); }
+.ball-pulse > div:nth-child(1) {
+    -webkit-animation: scale 0.75s 0.12s infinite cubic-bezier(.2, .68, .18, 1.08);
+    animation: scale 0.75s 0.12s infinite cubic-bezier(.2, .68, .18, 1.08); }
+.ball-pulse > div:nth-child(2) {
+    -webkit-animation: scale 0.75s 0.24s infinite cubic-bezier(.2, .68, .18, 1.08);
+    animation: scale 0.75s 0.24s infinite cubic-bezier(.2, .68, .18, 1.08); }
+.ball-pulse > div:nth-child(3) {
+    -webkit-animation: scale 0.75s 0.36s infinite cubic-bezier(.2, .68, .18, 1.08);
+    animation: scale 0.75s 0.36s infinite cubic-bezier(.2, .68, .18, 1.08); }
+.ball-pulse > div {
+    background-color: #e9ae4c;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    margin: 2px;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    display: inline-block;
+}
+@keyframes scale {
+    30% {
+        -webkit-transform: scale(0.3);
+        transform: scale(0.3); }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1); }
+}
+
+@keyframes alertAnimation{
+    0% {
+        transform: scale(0.5);
+    }
+    45% {
+        transform: scale(1.25);
+    }
+    80% {
+
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@-webkit-keyframes alertAnimation{
+    0% {
+        -webkit-transform: scale(0.5);
+    }
+    45% {
+        -webkit-transform: scale(1.25);
+    }
+    80% {
+        -webkit-transform: scale(0.95);
+    }
+    100% {
+        -webkit-transform: scale(1);
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width:1024px) {
+    form .terms{
+        margin-top: .48rem;
+    }
+    .logoIcon img {
+        margin-top:25%;
+        width: 2rem;
+        margin-left: -1rem
+    }
+
+    #userForm input[info = info] {
+        padding-top: .24rem;
+        padding-left: 1.04rem;
+        height: 1.6rem;
+        font-size: .4rem;
+        line-height: .88rem;
+    }
+
+    #userForm label.feedTitle{
+        width: 2.08rem;
+        height: 1.6rem;
+        font-size: .4rem;
+        line-height: 1.76rem;
+    }
+
+    .cs-skin-elastic > span{
+        padding: .56rem 0.24rem !important;
+        font-size: 0.4rem;
+    }
+
+    .cs-select ul{
+        max-height: 5.4rem !important;
+    }
+
+    .feedTextarea{
+        font-size: .4rem;
+    }
+
+    .phoneNumber {
+        background-size: .8rem;
+        background-position: .16rem .48rem;
+    }
+
+    .securityCode {
+        background-size: 1.12rem;
+        background-position: 0 .38rem;
+    }
+
+    .getSecurityCode {
+        right: 5%;
+        margin-top: -1.36rem;
+        width: 3.2rem;
+        line-height: 1.36rem;
+        font-size: .4rem;
+    }
+
+    form .terms label.check {
+        width: .64rem;
+        height: .64rem;
+        margin: .08rem;
+        border: .04rem solid #369;
+        font-size: .4rem
+    }
+
+    form .terms label.check {
+        border-radius: .16rem
+    }
+
+    form .terms label .iconfont {
+        line-height: .6rem
+    }
+
+    form .terms input:checked+label {
+        border: .04rem solid #2b5782
+    }
+
+    form .terms span {
+        line-height: .8rem;
+        font-size: .4rem
+    }
+
+    .termsText {
+        max-height: 2.72rem;
+        padding: .27rem;
+        text-indent: 2em;
+        font-size: .24rem;
+        border: .02rem solid #c7c7c7
+    }
+
+    .errors {
+        background-position: .14rem .12rem;
+        background-size: .56rem;
+        height: .8rem;
+        line-height: .8rem;
+        padding-left: .8rem;
+        font-size: .32rem
+    }
+
+    button.connectBtn {
+        height: 1.23rem;
+        margin: .72rem auto;
+        font-size: .56rem;
+        line-height: 1.23rem;
+    }
+
+    footer {
+        height: 1.2rem;
+        line-height: 1.2rem;
+        padding: 0 .16rem;
+        font-size: .4rem
+    }
+
+    footer img {
+        width: .56rem
+    }
+
+    footer span {
+        margin-left: .048rem
+    }
+
+    footer #scrollMessage {
+        width: 90%;
+        overflow: hidden;
+        margin-left: 0.688rem
+    }
+}
+
+@media screen and (max-width: 320px) {
+    #userForm{
+        margin-top: -.32rem;
+    }
+    .logoIcon img {
+        margin-top:10%;
+        width: 1.28rem;
+        margin-left: -.64rem
+    }
+
+    #userForm input[info = info] {
+        padding-top: .12rem;
+        padding-left: .6rem;
+        height: .96rem;
+        font-size: .24rem;
+        line-height: .56rem
+    }
+
+    .phoneNumber {
+        background-size: .48rem;
+        background-position: .048rem .256rem;
+    }
+
+    .securityCode {
+        background-size: .7rem;
+        background-position: -.064rem .16rem;
+    }
+
+    .getSecurityCode {
+        right: 2%;
+        margin-top: -.64rem;
+        width: 2rem;
+        text-align: left;
+        line-height: .4rem;
+        font-size: .24rem
+    }
+
+    form .terms{
+        margin-top: .16rem;
+    }
+
+    form .terms label.check {
+        width: .32rem;
+        height: .32rem;
+        margin: .08rem;
+        border: .02rem solid #369;
+        font-size: .24rem
+    }
+
+    form .terms label.check {
+        border-radius: .08rem
+    }
+
+    form .terms label .iconfont {
+        line-height: .3rem;
+        font-size: 0.24rem;
+    }
+
+    form .terms input:checked+label {
+        border: .02rem solid #2b5782
+    }
+
+    form .terms span {
+        line-height: .512rem;
+        color: #b8b8b8;
+        font-size: .24rem
+    }
+
+    .termsText {
+        max-height: 2.08rem;
+        padding: .16rem;
+        text-indent: 2em;
+        font-size: .16rem;
+        border: .02rem solid #e5e5e5
+    }
+
+    .errors {
+        background-position: .144rem .288rem;
+        background-size: .24rem;
+        height: .8rem;
+        line-height: .8rem;
+        padding-left: .48rem;
+        font-size: .24rem
+    }
+
+    button.connectBtn {
+        height: .8rem;
+        margin: .24rem auto;
+        font-size: .32rem;
+        line-height: .8rem
+    }
+
+    footer {
+        height: .88rem;
+        line-height: .88rem;
+        padding: 0 .16rem;
+        font-size: .24rem
+    }
+
+    footer img {
+        width: .4rem
+    }
+
+    footer span {
+        margin-left: .048rem
+    }
+
+    footer #scrollMessage {
+        width: 90%;
+        overflow: hidden;
+        margin-left: 0.688rem
+    }
+
+    #userForm label.feedTitle{
+        width: 1.28rem;
+        height: .24rem;
+        line-height: .96rem;
+        font-size: .24rem;
+    }
+
+    .cs-select span{
+        font-size: .24rem;
+    }
+
+    .cs-skin-elastic > span{
+        padding: .32rem 0.16rem !important;
+        font-size: .24rem;
+    }
+
+    .feedTextarea{
+        font-size: .24rem;
+    }
+    #layerDiv .layerCenter .layerMsg{
+        font-size: .28rem
+    }
+    #layerDiv{
+        width: 4rem;
+        margin-left: -2rem;
+    }
+}
